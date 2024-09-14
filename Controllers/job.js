@@ -1,18 +1,18 @@
-const jobModel = require("../Models/job");
+const jobModel = require("../Models/job.js");
 
 
 async function jobPost(req,res){
+    console.log(req.body);
     try{
        const newJob = new jobModel(req.body);
         await newJob.save()
-        re.status(201).json({
+        res.status(201).json({
             message : "Job is added successfully "
         })
-
     }catch(error){
-        console.log(error.message);
+        console.log(error);
         res.status(500).json({
-             error : error.message,
+             error : error,
              message : "InValid details"
         })
     }
